@@ -1,0 +1,22 @@
+{
+  "name": "pulse",
+  "version": "1.0.0",
+  "description": "Pulse — AI Risk Manager for Razorpay AI Buildathon Track 02",
+  "scripts": {
+    "train": "python -m backend.ml.train",
+    "benchmark": "python -m backend.engine.spike_detector",
+    "backend": "python -m uvicorn backend.main:app --host 127.0.0.1 --port 8000 --reload",
+    "frontend": "npm --prefix frontend run dev",
+    "build": "npm --prefix frontend run build",
+    "start": "python run.py"
+  },
+  "keywords": [
+    "ai",
+    "risk-management",
+    "fraud-detection",
+    "spike-detector",
+    "razorpay-buildathon"
+  ],
+  "author": "Siddhant Shukla",
+  "license": "MIT"
+}
