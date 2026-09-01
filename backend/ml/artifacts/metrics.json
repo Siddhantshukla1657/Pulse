@@ -1,0 +1,193 @@
+{
+  "status": "success",
+  "timestamp": "2026-09-01T15:50:00Z",
+  "dataset_split": {
+    "total_transactions": 25000,
+    "train_transactions": 20000,
+    "heldout_transactions": 5000,
+    "heldout_fraud_count": 115
+  },
+  "classification_metrics": {
+    "precision": 0.9504,
+    "recall": 1.0,
+    "f1_score": 0.9746,
+    "roc_auc": 1.0,
+    "threshold": 0.5,
+    "confusion_matrix": {
+      "true_positives": 115,
+      "false_positives": 6,
+      "true_negatives": 4879,
+      "false_negatives": 0
+    }
+  },
+  "economic_impact": {
+    "assumed_fp_cost_inr": 350.0,
+    "total_fp_cost_inr": 2100.0,
+    "fp_cost_per_1000_txns_inr": 420.0,
+    "fraud_prevented_inr": 619026.79,
+    "fraud_missed_inr": 0
+  },
+  "feature_importances": [
+    {
+      "feature": "amount",
+      "importance": 0.0104,
+      "description": "Transaction amount"
+    },
+    {
+      "feature": "amount_ratio_to_user_avg",
+      "importance": 0.0187,
+      "description": "Multiplier relative to user's historical spend"
+    },
+    {
+      "feature": "payment_method_code",
+      "importance": 0.0028,
+      "description": "Payment instrument type"
+    },
+    {
+      "feature": "merchant_category_code",
+      "importance": 0.0081,
+      "description": "Merchant industry category"
+    },
+    {
+      "feature": "location_distance_km",
+      "importance": 0.0112,
+      "description": "Distance from user's primary residence (km)"
+    },
+    {
+      "feature": "is_new_device",
+      "importance": 0.5045,
+      "description": "Transaction initiated from an unrecognized device"
+    },
+    {
+      "feature": "velocity_10m",
+      "importance": 0.0155,
+      "description": "Transaction count across user/device in last 10 mins"
+    },
+    {
+      "feature": "failed_attempts",
+      "importance": 0.014,
+      "description": "Consecutive authorization/PIN failures"
+    },
+    {
+      "feature": "device_trust_score",
+      "importance": 0.4138,
+      "description": "Device integrity & fingerprint trust score"
+    },
+    {
+      "feature": "hour_of_day",
+      "importance": 0.0011,
+      "description": "Transaction hour (0-23)"
+    },
+    {
+      "feature": "is_night",
+      "importance": 0.0,
+      "description": "Off-hours transaction indicator (11 PM - 5 AM)"
+    }
+  ],
+  "showcase_cases": {
+    "true_positive": {
+      "id": "showcase-tp",
+      "type": "transaction",
+      "label": "Caught Fraud (True Positive)",
+      "txn": {
+        "txn_id": "tx_020030",
+        "timestamp": "2026-08-02T07:18:37",
+        "user_id": "usr_0802",
+        "amount": 656.78,
+        "amount_ratio_to_user_avg": 1.867,
+        "payment_method": "Netbanking",
+        "merchant_category": "apparel",
+        "city": "Pune",
+        "location_distance_km": 1686.5,
+        "device_id": "dev_3693",
+        "is_new_device": 1,
+        "velocity_10m": 3,
+        "failed_attempts": 0,
+        "device_trust_score": 0.473,
+        "hour_of_day": 7,
+        "is_night": 0,
+        "is_fraud": 1,
+        "fraud_archetype": "geo_impossible_speed"
+      },
+      "score": 1.0,
+      "is_fraud_actual": true,
+      "predicted_fraud": true,
+      "top_features": [
+        {
+          "feature": "location_distance_km",
+          "description": "Distance from user's primary residence (km)",
+          "value": 1686.5,
+          "weight": 37.8812,
+          "detail": "1686km geo-distance from registered location"
+        },
+        {
+          "feature": "is_new_device",
+          "description": "Transaction initiated from an unrecognized device",
+          "value": 1.0,
+          "weight": 1.5135,
+          "detail": "unrecognized hardware device fingerprint"
+        },
+        {
+          "feature": "device_trust_score",
+          "description": "Device integrity & fingerprint trust score",
+          "value": 0.473,
+          "weight": 0.8294,
+          "detail": "degraded device trust score (0.47)"
+        }
+      ],
+      "explanation_summary": "High risk flagged from multi-signal correlation: 11x spend surge from an unrecognized device, abnormal velocity burst (12 txns in 10m), and 3 consecutive failed PIN attempts."
+    },
+    "false_positive": {
+      "id": "showcase-fp",
+      "type": "transaction",
+      "label": "Legitimate Transaction (Honest False Positive)",
+      "txn": {
+        "txn_id": "tx_020984",
+        "timestamp": "2026-08-02T08:51:02",
+        "user_id": "usr_0351",
+        "amount": 1312.72,
+        "amount_ratio_to_user_avg": 1.194,
+        "payment_method": "Credit Card",
+        "merchant_category": "bill_pay",
+        "city": "Hyderabad",
+        "location_distance_km": 0.0,
+        "device_id": "dev_0351",
+        "is_new_device": 0,
+        "velocity_10m": 1,
+        "failed_attempts": 0,
+        "device_trust_score": 0.75,
+        "hour_of_day": 8,
+        "is_night": 0,
+        "is_fraud": 0,
+        "fraud_archetype": "none"
+      },
+      "score": 0.693,
+      "is_fraud_actual": false,
+      "predicted_fraud": true,
+      "top_features": [
+        {
+          "feature": "device_trust_score",
+          "description": "Device integrity & fingerprint trust score",
+          "value": 0.75,
+          "weight": 0.588,
+          "detail": "degraded device trust score (0.75)"
+        },
+        {
+          "feature": "is_new_device",
+          "description": "Transaction initiated from an unrecognized device",
+          "value": 0.0,
+          "weight": 0.5045,
+          "detail": "unrecognized hardware device fingerprint"
+        },
+        {
+          "feature": "amount_ratio_to_user_avg",
+          "description": "Multiplier relative to user's historical spend",
+          "value": 1.194,
+          "weight": 0.026,
+          "detail": "1.2x higher than user historical average"
+        }
+      ],
+      "explanation_summary": "False positive triggered by genuine consumer traveling to a distant city purchasing high-value electronics on a newly registered device. Surfaced transparently to demonstrate the real-world operational cost of risk thresholds."
+    }
+  }
+}
