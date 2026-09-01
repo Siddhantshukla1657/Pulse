@@ -1,0 +1,64 @@
+{
+  "timestamp": "2026-09-01T15:53:00Z",
+  "spike_metrics": {
+    "total_ground_truth_spikes": 4,
+    "caught_spikes": 4,
+    "missed_spikes": 0,
+    "total_spike_flags_raised": 12,
+    "spike_recall": 1.0,
+    "spike_precision": 0.3333,
+    "mean_time_to_detection_txns": 2.2,
+    "median_time_to_detection_txns": 2.0,
+    "target_sla_txns": 30
+  },
+  "detailed_spike_results": [
+    {
+      "spike_id": "gt_spike_01",
+      "archetype": "card_testing_bot_burst",
+      "detected": true,
+      "detection_flag_id": "spk_002",
+      "ground_truth_start_index": 602,
+      "flagged_at_index": 604,
+      "time_to_detection_txns": 2,
+      "time_to_detection_seconds": 3.0,
+      "deviation_sigma": 2.67,
+      "description": "Coordinated card testing bot burst attack burst of 18 consecutive transactions."
+    },
+    {
+      "spike_id": "gt_spike_02",
+      "archetype": "credential_stuffing_ring",
+      "detected": true,
+      "detection_flag_id": "spk_004",
+      "ground_truth_start_index": 1770,
+      "flagged_at_index": 1774,
+      "time_to_detection_txns": 4,
+      "time_to_detection_seconds": 6.0,
+      "deviation_sigma": 2.5,
+      "description": "Coordinated credential stuffing ring attack burst of 22 consecutive transactions."
+    },
+    {
+      "spike_id": "gt_spike_03",
+      "archetype": "high_velocity_ato_surge",
+      "detected": true,
+      "detection_flag_id": "spk_006",
+      "ground_truth_start_index": 3042,
+      "flagged_at_index": 3043,
+      "time_to_detection_txns": 1,
+      "time_to_detection_seconds": 1.0,
+      "deviation_sigma": 2.51,
+      "description": "Coordinated high velocity ato surge attack burst of 25 consecutive transactions."
+    },
+    {
+      "spike_id": "gt_spike_04",
+      "archetype": "stealth_micro_burst",
+      "detected": true,
+      "detection_flag_id": "spk_012",
+      "ground_truth_start_index": 4167,
+      "flagged_at_index": 4169,
+      "time_to_detection_txns": 2,
+      "time_to_detection_seconds": 2.0,
+      "deviation_sigma": 2.52,
+      "description": "Coordinated stealth micro burst attack burst of 14 consecutive transactions."
+    }
+  ]
+}
